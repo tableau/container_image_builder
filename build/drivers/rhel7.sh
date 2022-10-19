@@ -5,7 +5,7 @@ function pre_build() {
 }
 
 function post_build() {
-  find "/build/drivers/files/$OS_TYPE" -name '*.jar' -type f -exec cp {} /opt/tableau/tableau_driver/jdbc \;
+  find . -name '*.jar' -type f -exec cp {} /opt/tableau/tableau_driver/jdbc \;
   find /opt/tableau/tableau_driver/jdbc -name '*.jar' -type f -exec chmod 0755 {} \;
   ls -l /opt/tableau/tableau_driver/jdbc
   cat /etc/odbcinst.ini
