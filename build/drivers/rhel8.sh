@@ -66,6 +66,14 @@ EOF
   [ -f /opt/exasol/libexaodbc-uo2214lv2.so ]
 }
 
+function firebolt() {
+  :
+}
+
+function google_big_query() {
+  :
+}
+
 function hortonworks_hive() {
   echo "not implemented: user action is required"
   exit 1

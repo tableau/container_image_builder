@@ -6,6 +6,8 @@ function amazon_emr_hadoop_hive() {
   curl --location --output amazon_emr_hadoop_hive.zip http://awssupportdatasvcs.com/bootstrap-actions/Simba/AmazonHiveODBC-2.6.9.1009.zip
   unzip amazon_emr_hadoop_hive.zip -d ./tmp/amazon_emr_hadoop_hive
   cp ./tmp/amazon_emr_hadoop_hive/AmazonHiveODBC-2.6.9.1009/AmazonHiveODBC-2.6.9.1009-1.x86_64.rpm amazon_emr_hadoop_hive.rpm
+  rm -rf ./tmp/amazon_emr_hadoop_hive
+  rm amazon_emr_hadoop_hive.zip
 }
 
 function amazon_redshift() {
@@ -16,12 +18,16 @@ function cloudera_hive() {
   curl --location --output cloudera_hive.zip https://downloads.cloudera.com/connectors/ClouderaHive_ODBC_2.6.13.1013.zip
   unzip cloudera_hive.zip -d ./tmp/cloudera_hive
   cp ./tmp/cloudera_hive/ClouderaHive_ODBC_2.6.13.1013/Linux/ClouderaHiveODBC-2.6.13.1013-1.x86_64.rpm cloudera_hive.rpm
+  rm -rf ./tmp/cloudera_hive
+  rm cloudera_hive.zip
 }
 
 function cloudera_impala() {
   curl --location --output cloudera_impala.zip https://downloads.cloudera.com/connectors/impala_odbc_2.6.14.1016.zip
   unzip cloudera_impala.zip -d ./tmp/cloudera_impala
   cp ./tmp/cloudera_impala/impala_odbc_2.6.14.1016/Linux/ClouderaImpalaODBC-2.6.14.1016-1.x86_64.rpm cloudera_impala.rpm
+  rm -rf ./tmp/cloudera_impala
+  rm cloudera_impala.zip
 }
 
 function datorama() {
@@ -34,6 +40,18 @@ function dremio() {
 
 function exasol() {
   curl --location --output exasol.tar.gz https://www.exasol.com/support/secure/attachment/225287/EXASOL_ODBC-7.1.14.tar.gz
+}
+
+function firebolt() {
+  curl --location --remote-name https://github.com/firebolt-db/jdbc/releases/download/v2.2.3/firebolt-jdbc-2.2.3.jar
+}
+
+function google_big_query() {
+  curl --location --output google_big_query.zip https://storage.googleapis.com/simba-bq-release/jdbc/SimbaJDBCDriverforGoogleBigQuery42_1.3.0.1001.zip
+  unzip google_big_query.zip -d ./tmp/google_big_query
+  cp ./tmp/google_big_query/GoogleBigQueryJDBC42.jar .
+  rm -rf ./tmp/google_big_query
+  rm google_big_query.zip
 }
 
 function hortonworks_hive() {
@@ -49,6 +67,8 @@ function jaybird() {
   curl --location --output jaybird.zip https://github.com/FirebirdSQL/jaybird/releases/download/v3.0.12/Jaybird-3.0.12-JDK_1.8.zip
   unzip jaybird.zip -d ./tmp/jaybird
   cp ./tmp/jaybird/jaybird-full-3.0.12.jar .
+  rm -rf ./tmp/jaybird
+  rm jaybird.zip
 }
 
 function mapr_drill() {
@@ -116,6 +136,8 @@ function simba_spark() {
   curl --location --output simba_spark.zip https://databricks-bi-artifacts.s3.us-east-2.amazonaws.com/simbaspark-drivers/odbc/2.6.26/SimbaSparkODBC-2.6.26.1045-LinuxRPM-64bit.zip
   unzip simba_spark.zip -d ./tmp/simba_spark
   cp ./tmp/simba_spark/simbaspark-2.6.26.1045-1.x86_64.rpm simba_spark.rpm
+  rm -rf ./tmp/simba_spark
+  rm simba_spark.zip
 }
 
 function singlestore() {

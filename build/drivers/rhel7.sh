@@ -67,6 +67,14 @@ EOF
   [ -f /opt/exasol/libexaodbc-uo2214lv2.so ]
 }
 
+function firebolt() {
+  :
+}
+
+function google_big_query() {
+  :
+}
+
 function hortonworks_hive() {
   yum -y localinstall ./hortonworks_hive.rpm
   odbcinst -i -d -f /usr/lib/hive/lib/native/hiveodbc/Setup/odbcinst.ini
