@@ -11,7 +11,7 @@ sed -i.bak "s|\$SOURCE_REPO|$SOURCE_REPO|" Dockerfile
 sed -i.bak "s|\$IMAGE_TAG|$IMAGE_TAG|" Dockerfile
 sed -i.bak "s|\$USER|$USER|" Dockerfile
 # Run container build jobs
-docker build \
+DOCKER_BUILDKIT=1 docker build \
   --build-arg DRIVERS="$DRIVERS" \
   --build-arg OS_TYPE="$OS_TYPE" \
   --tag "$TARGET_REPO:$IMAGE_TAG" \
