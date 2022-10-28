@@ -46,12 +46,12 @@ function firebolt() {
   curl --location --remote-name https://github.com/firebolt-db/jdbc/releases/download/v2.2.3/firebolt-jdbc-2.2.3.jar
 }
 
-function google_big_query() {
-  curl --location --output google_big_query.zip https://storage.googleapis.com/simba-bq-release/jdbc/SimbaJDBCDriverforGoogleBigQuery42_1.3.0.1001.zip
-  unzip google_big_query.zip -d ./tmp/google_big_query
-  cp ./tmp/google_big_query/GoogleBigQueryJDBC42.jar .
-  rm -rf ./tmp/google_big_query
-  rm google_big_query.zip
+function google_bigquery() {
+  curl --location --output google_bigquery.zip https://storage.googleapis.com/simba-bq-release/jdbc/SimbaJDBCDriverforGoogleBigQuery42_1.3.0.1001.zip
+  unzip google_bigquery.zip -d ./tmp/google_bigquery
+  cp ./tmp/google_bigquery/GoogleBigQueryJDBC42.jar .
+  rm -rf ./tmp/google_bigquery
+  rm google_bigquery.zip
 }
 
 function hortonworks_hive() {

@@ -70,7 +70,7 @@ function firebolt() {
   :
 }
 
-function google_big_query() {
+function google_bigquery() {
   :
 }
 
