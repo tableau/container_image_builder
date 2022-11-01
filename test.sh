@@ -4,7 +4,8 @@ cd "$(dirname "$0")"
 set -a
 source variables.sh
 set +a
-name=test_jobs
+./check_variables.sh
+name=test_image
 # Run container test jobs
 docker container kill $name ||:
 docker container rm $name ||:

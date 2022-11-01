@@ -11,10 +11,3 @@ IMAGE_TAG=8.6
 TARGET_REPO=user/redhat/ubi8
 # USER is the identity to use when running ENTRYPOINT or CMD from the base image
 USER=root
-
-# check required variables
-: ${OS_TYPE:?OS_TYPE is required}
-: ${SOURCE_REPO:?SOURCE_REPO is required}
-: ${TARGET_REPO:?TARGET_REPO is required}
-: ${IMAGE_TAG:?IMAGE_TAG is required}
-: ${USER:?USER is required}
