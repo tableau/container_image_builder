@@ -141,14 +141,14 @@ EOF
 
 function microsoft_sql_server() {
   cp ./microsoft-rhel7.repo /etc/yum.repos.d/microsoft-rhel7.repo
-  ACCEPT_EULA=Y yum -y install msodbcsql17
+  ACCEPT_EULA=Y yum -y install msodbcsql17-17.10.2.1-1
   grep -n -F '[ODBC Driver 17 for SQL Server]' /etc/odbcinst.ini
-  [ -f /opt/microsoft/msodbcsql17/lib64/libmsodbcsql-17.10.so.1.1 ]
+  [ -f /opt/microsoft/msodbcsql17/lib64/libmsodbcsql-17.10.so.2.1 ]
 }
 
 function mysql() {
   yum -y localinstall ./mysql.rpm
-  yum -y install mysql-connector-odbc
+  yum -y install mysql-connector-odbc-8.0.31-1.el7
   grep -n -F '[MySQL ODBC 8.0 ANSI Driver]' /etc/odbcinst.ini
   grep -n -F '[MySQL ODBC 8.0 Unicode Driver]' /etc/odbcinst.ini
   [ -f /usr/lib64/libmyodbc8a.so ]
