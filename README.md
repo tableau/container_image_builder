@@ -6,7 +6,10 @@ It downloads database driver files from official websites managed by the databas
 
 ## How to use it
 * Set the configuration values in `./variables.sh`
-* To implement custom user actions, make changes in download/user/build.sh, build/user/build.sh, and test/user/test.sh
+* Make customizations to support your particular user scenario:
+  * To download a driver, create file download/user/drivers/$OS_TYPE.sh, and define functions similar to code in download/drivers/$OS_TYPE.sh
+  * To install a driver, create file build/user/drivers/$OS_TYPE.sh, and define functions similar to code in build/drivers/$OS_TYPE.sh
+  * To implement custom actions, make changes in download/user/download.sh, build/user/build.sh, and test/user/test.sh
 * Run `./download.sh`. It will store the drivers under build/drivers/files
 * Run `./build.sh`. When successful, it creates $TARGET_REPO:$IMAGE_TAG in your local computer
 * Optionally, run `./test.sh`. You could extend it by writing connectivity tests to your internal databases. JDBC tests might require to install JRE in the container. ODBC tests can use UnixODBC isql command line tool.
