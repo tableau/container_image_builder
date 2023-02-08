@@ -39,7 +39,7 @@ function dremio() {
 }
 
 function exasol() {
-  curl --location --output exasol.tar.gz https://www.exasol.com/support/secure/attachment/225287/EXASOL_ODBC-7.1.14.tar.gz
+  curl --location --output exasol.tar.gz https://x-up.s3.amazonaws.com/7.x/7.1.17/EXASOL_ODBC-7.1.17.tar.gz
 }
 
 function firebolt() {

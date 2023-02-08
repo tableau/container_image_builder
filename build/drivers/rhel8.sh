@@ -146,7 +146,7 @@ function microsoft_sql_server() {
 
 function mysql() {
   yum -y localinstall ./mysql.rpm
-  yum -y install mysql-connector-odbc-8.0.31-1.el8
+  yum -y install mysql-connector-odbc-8.0.32-1.el8
   grep -n -F '[MySQL ODBC 8.0 ANSI Driver]' /etc/odbcinst.ini
   grep -n -F '[MySQL ODBC 8.0 Unicode Driver]' /etc/odbcinst.ini
   [ -f /usr/lib64/libmyodbc8a.so ]
