@@ -48,10 +48,10 @@ function my_driver() {
   yum -y localinstall ./my_driver.rpm
 }
 ```
-* To override an existing driver, you could add a function. This sample installs amazon redshift with fictional flags ACCEPT_EULA and WORKERS
+* To override an existing driver, you could add a function. This sample installs amazon redshift with dummy variables FOO and BAR
 ```
 function amazon_redshift() {
-  ACCEPT_EULA=Y WORKERS=2 yum -y --nogpgcheck localinstall ./amazon_redshift.rpm
+  FOO=1 BAR=2 yum -y --nogpgcheck localinstall ./amazon_redshift.rpm
   odbcinst -i -d -f /opt/amazon/redshiftodbc/Setup/odbcinst.ini
   grep -n -F '[Amazon Redshift (x64)]' /etc/odbcinst.ini
   [ -f /opt/amazon/redshiftodbc/lib/64/libamazonredshiftodbc64.so ]
