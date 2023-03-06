@@ -24,6 +24,27 @@ Every phase has jobs:
 * Run `./build.sh`. When successful, it creates $TARGET_REPO:$IMAGE_TAG in your local computer
 * Optionally, run `./test.sh`. You could extend it by writing connectivity tests to your internal databases. JDBC tests might require to install JRE in the container. ODBC tests can use UnixODBC isql command line tool.
 * Login to your container registry and push the image
+* This is a sample script pushing image to AWS ECR
+```
+# build image
+git clone https://github.com/tableau/container_image_builder.git
+pushd container_image_builder
+cat <<EOF > variables.sh
+DRIVERS=$DRIVERS
+OS_TYPE=$OS_TYPE
+SOURCE_REPO=$SOURCE_REPO
+IMAGE_TAG=$IMAGE_TAG
+TARGET_REPO=$TARGET_REPO
+USER=root
+EOF
+./download.sh
+./build.sh
+popd
+# push image
+aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$ECR_HOSTNAME"
+docker tag "$TARGET_REPO:$IMAGE_TAG" "$ECR_HOSTNAME/$TARGET_REPO:$IMAGE_TAG"
+docker push "$ECR_HOSTNAME/$TARGET_REPO:$IMAGE_TAG"
+```
 
 ### How to override downloads
 * Create file `download/user/drivers/$OS_TYPE.sh`, add functions similar to code in `download/drivers/$OS_TYPE.sh`
