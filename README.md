@@ -37,6 +37,9 @@ IMAGE_TAG=$IMAGE_TAG
 TARGET_REPO=$TARGET_REPO
 USER=root
 EOF
+# if needed, copy override files
+# cp /my-path/download/user/drivers/$OS_TYPE.sh ./download/user/drivers/$OS_TYPE.sh
+# cp /my-path/build/user/drivers/$OS_TYPE.sh ./build/user/drivers/$OS_TYPE.sh
 ./download.sh
 ./build.sh
 popd
