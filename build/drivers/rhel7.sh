@@ -53,6 +53,10 @@ function dremio() {
   :
 }
 
+function esri() {
+  :
+}
+
 function exasol() {
   mkdir -p /opt/exasol
   mkdir -p /tmp/exasol

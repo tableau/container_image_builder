@@ -38,6 +38,10 @@ function dremio() {
   curl --location --remote-name https://download.dremio.com/jdbc-driver/20.1.0-202202061055110045-36733c65/dremio-jdbc-driver-20.1.0-202202061055110045-36733c65.jar
 }
 
+function esri() {
+  curl --location --remote-name https://downloads.tableau.com/drivers/esri/esri-jdbc-driver-0.73.0.jar
+}
+
 function exasol() {
   curl --location --output exasol.tar.gz https://x-up.s3.amazonaws.com/7.x/7.1.17/EXASOL_ODBC-7.1.17.tar.gz
 }
