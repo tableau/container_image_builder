@@ -136,6 +136,10 @@ function sap_success_factors() {
   curl --location --remote-name https://downloads.tableau.com/drivers/cdata/jdbc/cdata.tableau.sapsuccessfactors.jar
 }
 
+function service_now() {
+  curl --location --remote-name https://downloads.tableau.com/drivers/ServiceNOW_JDBC/cdata.tableau.servicenow.21-0-8294.jar
+}
+
 function simba_spark() {
   curl --location --output simba_spark.zip https://databricks-bi-artifacts.s3.us-east-2.amazonaws.com/simbaspark-drivers/odbc/2.6.26/SimbaSparkODBC-2.6.26.1045-LinuxRPM-64bit.zip
   unzip simba_spark.zip -d ./tmp/simba_spark

@@ -144,6 +144,10 @@ function simba_spark() {
   rm simba_spark.zip
 }
 
+function service_now() {
+  curl --location --remote-name https://downloads.tableau.com/drivers/ServiceNOW_JDBC/cdata.tableau.servicenow.21-0-8294.jar
+}
+
 function singlestore() {
   curl --location --output singlestore.tar.gz https://github.com/memsql/singlestore-odbc-connector/releases/download/v1.0.7/singlestore-connector-odbc-1.0.7-centos8-amd64.tar.gz
 }

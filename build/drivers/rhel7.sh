@@ -200,6 +200,10 @@ function sap_success_factors() {
   :
 }
 
+function service_now() {
+  :
+}
+
 function simba_spark() {
   yum -y localinstall ./simba_spark.rpm
   odbcinst -i -d -f /opt/simba/spark/Setup/odbcinst.ini
