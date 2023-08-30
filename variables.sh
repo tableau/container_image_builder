@@ -6,7 +6,7 @@ OS_TYPE=rhel8
 # SOURCE_REPO is the location of the base image
 SOURCE_REPO=redhat/ubi8
 # IMAGE_TAG is the base image tag, it is usually a version number
-IMAGE_TAG=8.6
+IMAGE_TAG=8.7
 # TARGET_REPO is the output location of the new image
 TARGET_REPO=user/redhat/ubi8
 # USER is the identity to use when running ENTRYPOINT or CMD from the base image

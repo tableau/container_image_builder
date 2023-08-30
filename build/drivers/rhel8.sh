@@ -79,8 +79,10 @@ function google_bigquery() {
 }
 
 function hortonworks_hive() {
-  echo "not implemented: user action is required"
-  exit 1
+  yum -y localinstall ./hortonworks_hive.rpm
+  odbcinst -i -d -f /usr/lib/hive/lib/native/hiveodbc/Setup/odbcinst.ini
+  grep -n -F '[Hortonworks Hive ODBC Driver 64-bit]' /etc/odbcinst.ini
+  [ -f /usr/lib/hive/lib/native/Linux-amd64-64/libhortonworkshiveodbc64.so ]
 }
 
 function ibm_db2() {
