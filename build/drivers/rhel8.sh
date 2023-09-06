@@ -243,7 +243,7 @@ function teradata() {
   mkdir -p /tmp/teradata
   tar -xvzf ./teradata.tar.gz --directory /tmp/teradata --strip-components=1
   pushd /tmp/teradata
-  ./setup_wrapper.sh -s -i /opt -r tdodbc1620-16.20.00.36-1.noarch.rpm
+  ./setup_wrapper.sh -s -i /opt -r tdodbc1620-16.20.00.127-1.noarch.rpm
   popd
   odbcinst -i -d -f /opt/teradata/client/ODBC_64/odbcinst.ini
   grep -n -F '[Teradata Database ODBC Driver 16.20]' /etc/odbcinst.ini

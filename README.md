@@ -2,7 +2,7 @@
 [![Community Supported](https://img.shields.io/badge/Support%20Level-Community%20Supported-457387.svg)](https://www.tableau.com/support-levels-it-and-developer-tools)
 
 Use this tool to install database drivers and other artifacts needed in your Tableau containers.
-It downloads database driver files from official websites managed by the database vendors. Therefore, the path or the availability of a database driver can change at any moment. It is recommended to backup the files in your internal network. 
+It downloads database driver files from official websites managed by the database vendors. Therefore, the path or the availability of a database driver can change at any moment. It is recommended to create a backup of the files in your internal network. 
 
 ## How it works
 There are 3 phases: 
@@ -24,30 +24,7 @@ Every phase has jobs:
 * Run `./build.sh`. When successful, it creates $TARGET_REPO:$IMAGE_TAG in your local computer
 * Optionally, run `./test.sh`. You could extend it by writing connectivity tests to your internal databases. JDBC tests might require to install JRE in the container. ODBC tests can use UnixODBC isql command line tool.
 * Login to your container registry and push the image
-* This is a sample script pushing image to AWS ECR
-```
-# build image
-git clone https://github.com/tableau/container_image_builder.git
-pushd container_image_builder
-cat <<EOF > variables.sh
-DRIVERS=$DRIVERS
-OS_TYPE=$OS_TYPE
-SOURCE_REPO=$SOURCE_REPO
-IMAGE_TAG=$IMAGE_TAG
-TARGET_REPO=$TARGET_REPO
-USER=root
-EOF
-# if needed, copy override files
-# cp /my-path/download/user/drivers/$OS_TYPE.sh ./download/user/drivers/$OS_TYPE.sh
-# cp /my-path/build/user/drivers/$OS_TYPE.sh ./build/user/drivers/$OS_TYPE.sh
-./download.sh
-./build.sh
-popd
-# push image
-aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$ECR_HOSTNAME"
-docker tag "$TARGET_REPO:$IMAGE_TAG" "$ECR_HOSTNAME/$TARGET_REPO:$IMAGE_TAG"
-docker push "$ECR_HOSTNAME/$TARGET_REPO:$IMAGE_TAG"
-```
+* Look the samples for more details: aws_ecr.md, tableau_bridge_as_service.md
 
 ### How to override downloads
 * Create file `download/user/drivers/$OS_TYPE.sh`, add functions similar to code in `download/drivers/$OS_TYPE.sh`
