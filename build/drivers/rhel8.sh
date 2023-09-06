@@ -1,6 +1,6 @@
 function pre_build() {
   yum -y update
-  yum -y install libaio openssl unixODBC
+  yum -y install git libaio openssl unixODBC unzip
   mkdir -p /opt/tableau/tableau_driver/jdbc
 }
 
