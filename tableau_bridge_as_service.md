@@ -3,7 +3,7 @@
 ### Selecting an image with the base operating system
 If you are only interested in adding database drivers you can skip this section.
 
-Tableau Bridge Team is building containers using base image "redhat/ubi8:8.7". If you have a reason to use a different base image, you can edit the file `variables.sh`, and change the values of `OS_TYPE`, `SOURCE_REPO`, `IMAGE_TAG`. Tableau bridge installer only comes in rpm, deb is not supported. In theory, it should run ok in operating systems like Centos, Oracle Linux, and other similar to RedHat.
+Tableau Bridge Team is building containers using base image "docker.io/redhat/ubi8:8.7". If you have a reason to use a different base image, you can edit the file `variables.sh`, and change the values of `OS_TYPE`, `SOURCE_REPO`, `IMAGE_TAG`. Tableau bridge installer only comes in rpm, deb is not supported. In theory, it should run ok in operating systems like Centos, Oracle Linux, and other similar to RedHat.
 
 ### Installing database drivers in a base image
 The customer can select public database drivers from a managed list provided by the engineering team. Sometimes, the customer might need to install other database drivers or other versions to meet their database connection requirements. This document explains how to install the Teradata odbc driver and the same concept can be applied to other drivers. It uses a tool to generate the image, but you can use any tooling you want, the important part is to create an image and store it in the docker registry.
@@ -80,10 +80,11 @@ docker images
 
 ### Publish the image to the local docker registry
 1. View the file /etc/hosts. It should have a line "127.0.0.1 container-registry.distributed-cloud.salesforce.com". If the line is not there you are probably not in a node of your cluster
-2. Add a tag to the image in the format "bridge-base-$POOL_ID:8.7"
+2. Set variable POOL_ID with the value of your bridge pool id. In the tableau website, click in the bridge pool name, and it will show a dialog with the pool id value.
+3. Add a tag to the image in the format "bridge-base-$POOL_ID:8.7"
 ```
 REGISTRY_HOSTNAME=container-registry.distributed-cloud.salesforce.com
-POOL_ID=a028596f-8e62-4736-a429-3dd122532bf0
+POOL_ID=
 docker tag user/redhat/ubi8:8.7 $REGISTRY_HOSTNAME/bridge-base-$POOL_ID:8.7
 docker images
 REPOSITORY                                                                                             TAG       IMAGE ID       CREATED         SIZE

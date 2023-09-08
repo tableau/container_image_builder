@@ -4,7 +4,7 @@ DRIVERS=amazon_athena,amazon_emr_hadoop_hive,amazon_redshift,cloudera_hive,cloud
 # OS_TYPE selects the correct scripts to run depending on the linux platform of the base image
 OS_TYPE=rhel8
 # SOURCE_REPO is the location of the base image
-SOURCE_REPO=redhat/ubi8
+SOURCE_REPO=docker.io/redhat/ubi8
 # IMAGE_TAG is the base image tag, it is usually a version number
 IMAGE_TAG=8.7
 # TARGET_REPO is the output location of the new image
