@@ -1,6 +1,6 @@
 function pre_build() {
   yum -y update
-  yum -y install e2fsprogs git libaio numactl-libs openssl unixODBC unzip
+  yum -y install e2fsprogs git krb5-workstation libaio numactl-libs openssl unixODBC unzip
   mkdir -p /opt/tableau/tableau_driver/jdbc
 }
 
