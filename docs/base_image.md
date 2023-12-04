@@ -100,4 +100,4 @@ sudo kubectl get secrets -n tableau -o jsonpath='{.data.\.dockerconfigjson}' doc
 docker login --username $REGISTRY_USERNAME $REGISTRY_HOSTNAME
 docker push $REGISTRY_HOSTNAME/bridge-base-$POOL_ID:8.7
 ```
-5. Tell the Tableau Bridge Engineering Team that you created an image for the pool_id, the team will update the configuration to use the base image
+5. Share the full image name to the Tableau Bridge as a Service Team. For example "container-registry.distributed-cloud.salesforce.com/bridge-base-a028596f-8e62-4736-a429-3dd122532bf0:8.7"  
