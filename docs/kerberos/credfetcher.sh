@@ -3,6 +3,7 @@ set -o errexit; set -o nounset; set -o pipefail; set -o xtrace
 
 export DEBIAN_FRONTEND="noninteractive"
 export PATH=$PATH:/usr/local/bin
+: "${GMSA_OU:?GMSA_OU is required}"
 
 # check operating system
 OS_NAME_ID=$(cat /etc/os-release | grep ^ID=  | cut -d "=" -f 2 | cut -d "." -f 1 | tr -d '"')
@@ -122,11 +123,14 @@ sed -i '/CREDENTIALS_FETCHERD_STARTED_BY_SYSTEMD/a \    "Environment=\\"CF_CRED_
 sed -i 's/std::regex pattern/std::regex old_pattern/g' credentials-fetcher/auth/kerberos/src/krb.cpp
 sed -i '/std::regex old_pattern/a \    std::regex pattern("[ ]{2}([0-9]{2}\/.+:[0-9]{2})[ ]{2}");' credentials-fetcher/auth/kerberos/src/krb.cpp
 sed -i 's|%m/%d/%Y %T|%m/%d/%y %T|g' credentials-fetcher/auth/kerberos/src/krb.cpp
-if [ -n "$GMSA_OU" ]; then
-  sed -i "s/CN=Managed Service Accounts/$GMSA_OU/g" credentials-fetcher/auth/kerberos/src/krb.cpp
-fi
-# uncomment line below to change renew check from 10 minutes to 1 minute. Useful for testing
+sed -i "s/CN=Managed Service Accounts/$GMSA_OU/g" credentials-fetcher/auth/kerberos/src/krb.cpp
+# grant permissions to read kerberos ticket to gid 1000
+sed -i '/return std::make_pair( error_code, krb_cc_name );/i \    std::pair<int, std::string> chgrp_result = exec_shell_cmd( std::string( "chgrp 1000 " ) + krb_cc_name );' credentials-fetcher/auth/kerberos/src/krb.cpp
+sed -i '/return std::make_pair( error_code, krb_cc_name );/i \    std::pair<int, std::string> chmod_result = exec_shell_cmd( std::string( "chmod 640 " ) + krb_cc_name );' credentials-fetcher/auth/kerberos/src/krb.cpp
+# for testing purposes, uncomment line below to run the renew check every 1 minute
 # sed -i 's/uint64_t krb_ticket_handle_interval = 10;/uint64_t krb_ticket_handle_interval = 1;/g' credentials-fetcher/common/daemon.h
+# for testing purposes, uncomment line below to simulate ticket expiration
+# sed -i 's/RENEW_TICKET_HOURS 1/RENEW_TICKET_HOURS 24/g' credentials-fetcher/auth/kerberos/src/krb.cpp
 mkdir -p credentials-fetcher/build
 pushd credentials-fetcher/build
 if [ -f /bin/dnf ]; then
